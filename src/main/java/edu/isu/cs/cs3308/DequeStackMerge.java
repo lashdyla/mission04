@@ -5,21 +5,34 @@ import edu.isu.cs.cs3308.structures.Stack;
 import edu.isu.cs.cs3308.structures.impl.LinkedDeque;
 
 /**
+ * Merge two stacks together by using a LinkedDeque
  *
  * @author Isaac Griffith
+ * @author Dylan Lasher
  */
 public class DequeStackMerge {
 
     /**
-     * Merges the contents of the second stack (from) into the bottom of the
-     * first stack (into) while preserving the order of the original stacks.
-     * Note that if either stack is null, nothing happens.
+     * Merges contents of second stack into bottom of
+     * first stack, while preserving order of stack.
      *
-     * @param <E> Element type of the stacks
-     * @param into Stack into which the other stack will be merged
-     * @param from Stack which is merged into the bottom of the other stack.
+     * @param <E> Element type of stack
+     * @param into other stack to be merged
+     * @param from stack which is merged into bottom other stack
      */
     public static <E> void dequeStackMerge(final Stack<E> into, Stack<E> from) {
-        throw new UnsupportedOperationException("Not Yet Implemented");
+        if (into != null && from != null) {
+            LinkedDeque<E> mergeHandler = new LinkedDeque<>();
+
+            while (into.size() > 0) {
+                mergeHandler.offer(into.pop());
+            }
+            while (from.size() > 0) {
+                mergeHandler.offer(from.pop());
+            }
+            while (mergeHandler.size() > 0) {
+                into.push(mergeHandler.pollLast());
+            }
+        }
     }
 }
